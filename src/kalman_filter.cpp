@@ -72,11 +72,12 @@ void KalmanFilter::UpdateEKF(const VectorXd &z)
   }else{
     rho_dot = (x_(0) * x_(2) + x_(1) * x_(3)) / rho;
   }
-  
+
   z_pred << rho, phi, rho_dot;
 
   VectorXd y = z - z_pred;
 
+// Normalizing Angles
   while (y(1) > M_PI || y(1) < -M_PI)
   {
     //std::cout << "y(1) = " << y(1) << endl;
